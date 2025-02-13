@@ -602,8 +602,8 @@ namespace RewFile
 			REW result = REW.CreateEmpty(bitmap.Width, bitmap.Height, format);
 
 			result.Width = (short)bitmap.Width;
-			result.Height = (short)bitmap.Height;
-			result.data = new byte[bitmap.Width * bitmap.Height * result.NumChannels + headerOffset + 4];
+			result.Height = (short)bitmap.Height;												   // offset for data appended to the end
+			result.data = new byte[bitmap.Width * bitmap.Height * result.NumChannels + headerOffset + 12];
 			result.data.AddHeader(new Point16(result.Width, result.Height), bitmap.Width * bitmap.Height * result.NumChannels + headerOffset, result.BitsPerPixel);
 
 			BitmapData data = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, bmpf);
