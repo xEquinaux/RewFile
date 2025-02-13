@@ -264,7 +264,8 @@ namespace RewFile
 		}
 		public byte[] FlipVertically(byte[] pixels, int width, int height)
 		{
-			return pixels;
+			if (pixels.Length == 0) return pixels;
+
 			int bytesPerPixel = 4;
 			byte[] output = new byte[pixels.Length];
 
