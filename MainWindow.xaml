@@ -8,7 +8,7 @@
                 Title="Surface" Height="400" Width="393" SizeToContent="WidthAndHeight">
 	<Grid>
 		<Rectangle HorizontalAlignment="Left" Height="384" Stroke="#00000000" VerticalAlignment="Top" Width="393"/>
-		<ListBox x:Name="listbox_file" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Height="364" Width="217" SelectionChanged="listbox_file_SelectionChanged"/>
+		<ListBox x:Name="listbox_file" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Height="364" Width="217" SelectionChanged="listbox_file_SelectionChanged" DragDrop.Drop="listbox_file_Drop" AllowDrop="True"/>
 		<Button x:Name="button_load" Content="Load" HorizontalAlignment="Left" Margin="232,329,0,0" VerticalAlignment="Top" Width="151" Click="button_load_Click"/>
 		<Button x:Name="button_convert" Content="Convert" HorizontalAlignment="Left" Margin="232,354,0,0" VerticalAlignment="Top" Width="151" Click="button_convert_Click"/>
 		<Button x:Name="button_clear" Content="Clear" HorizontalAlignment="Left" Margin="232,304,0,0" VerticalAlignment="Top" Width="151" Click="button_clear_Click"/>
