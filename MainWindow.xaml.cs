@@ -55,14 +55,22 @@ namespace RewFile
 		{
 			if (listbox_file.SelectedIndex != -1)
 			{
-				Bitmap preview = (Bitmap)Bitmap.FromFile(list[listbox_file.SelectedIndex].FullPath);
-				int bpp = preview.PixelFormat.BytesPerPixel();
-				int stride = ((preview.Width * bpp) + 3) & ~3;
-				int width = preview.Width;
-				int height = preview.Height;
-				var data = preview.LockBits(new System.Drawing.Rectangle(0, 0, width, height), System.Drawing.Imaging.ImageLockMode.ReadOnly, preview.PixelFormat);
-				image.Source = BitmapSource.Create(width, height, 96f, 96f, Ext.GetFormat(bpp), null, data.Scan0, stride * height, stride);
-				preview.UnlockBits(data);
+				try
+				{ 
+					Bitmap preview = (Bitmap)Bitmap.FromFile(list[listbox_file.SelectedIndex].FullPath);
+					int bpp = preview.PixelFormat.BytesPerPixel();
+					int stride = ((preview.Width * bpp) + 3) & ~3;
+					int width = preview.Width;
+					int height = preview.Height;
+					var data = preview.LockBits(new System.Drawing.Rectangle(0, 0, width, height), System.Drawing.Imaging.ImageLockMode.ReadOnly, preview.PixelFormat);
+					image.Source = BitmapSource.Create(width, height, 96f, 96f, Ext.GetFormat(bpp), null, data.Scan0, stride * height, stride);
+					preview.UnlockBits(data);
+				}
+				catch (Exception ex)
+				{
+					System.Windows.MessageBox.Show("File does not have a valid pixel format for GDI+ to load it into the image previewer.", "Error", MessageBoxButton.OKCancel, MessageBoxImage.Information, MessageBoxResult.OK);
+					return;
+				}
 			}
 		}
 
